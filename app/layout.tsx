@@ -7,7 +7,7 @@ const nunito = Nunito_Sans({ variable: "--font-brand", subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Pídelo de España | Compras de España a Caracas",
   description: "Recibimos, consolidamos y preparamos tus compras en España para su entrega puerta a puerta en Caracas.",
-  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+  icons: { icon: "/favicon.png", shortcut: "/favicon.png" },
   openGraph: {
     title: "Pídelo de España",
     description: "Compra en España. Recíbelo en Caracas.",
