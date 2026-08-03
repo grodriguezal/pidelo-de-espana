@@ -18,14 +18,18 @@ const faqs = [
 function BoxCharacter({ small = false }: { small?: boolean }) {
   return (
     <div className={`box-character ${small ? "box-small" : ""}`} aria-hidden="true">
+      <span className="box-top" />
+      <span className="box-side" />
       <span className="box-tape" />
-      <span className="box-seam" />
-      <span className="box-label">PDE</span>
       <span className="box-eye eye-left" />
       <span className="box-eye eye-right" />
       <span className="box-smile" />
     </div>
   );
+}
+
+function SocialIcons() {
+  return <div className="social-icons" aria-label="Redes sociales próximamente"><span className="social-instagram" title="Instagram próximamente" /><span className="social-facebook" title="Facebook próximamente">f</span></div>;
 }
 
 function WhatsAppButton({ compact = false }: { compact?: boolean }) {
@@ -51,6 +55,7 @@ export default function Home() {
           <a href="#precio">Cuánto cuesta</a>
           <a href="#preguntas">Preguntas</a>
         </nav>
+        <SocialIcons />
         <WhatsAppButton compact />
         <details className="mobile-menu">
           <summary aria-label="Abrir menú"><span /><span /><span /></summary>
@@ -69,16 +74,14 @@ export default function Home() {
           </div>
           <p className="consult-note">Antes de comprar, consúltanos para confirmar que tus productos pueden enviarse.</p>
         </div>
-        <div className="hero-art" aria-label="Pídelo allá. Recíbelo aquí.">
-          <div className="location-label origin"><span>ALLÁ</span><small>Compras en España</small></div>
-          <div className="moving-box"><BoxCharacter /></div>
-          <div className="location-label destination"><span>AQUÍ</span><small>Tu puerta en Caracas</small></div>
-          <div className="hero-stamp"><strong>10%</strong><span>claro y<br />transparente</span></div>
-          <div className="service-map">
-            <div><b>1</b><span><strong>Tú compras</strong><small>En las tiendas que prefieras</small></span></div>
-            <div><b>2</b><span><strong>Nosotros agrupamos</strong><small>En nuestra dirección en España</small></span></div>
-            <div><b>3</b><span><strong>Lo recibes</strong><small>Puerta a puerta en Caracas</small></span></div>
+        <div className="hero-art" aria-label="Compra en España. Recíbelo en Caracas.">
+          <div className="scroll-stage">
+            <div className="scroll-place origin"><b>ALLÁ</b><small>España</small></div>
+            <div className="delivery-box"><BoxCharacter /></div>
+            <div className="scroll-place destination"><b>AQUÍ</b><small>Caracas</small></div>
+            <p className="scroll-message"><span>Compra en España.</span><strong>Recíbelo en Caracas.</strong></p>
           </div>
+          <span className="scroll-hint">Desliza para acompañar el pedido ↓</span>
         </div>
       </section>
 
@@ -124,7 +127,7 @@ export default function Home() {
 
       <section className="restriction-section">
         <div><span className="section-kicker light">Antes de comprar</span><h2>¿Se puede enviar?</h2><p>Todos los artículos deben contar con factura y estar admitidos por el courier. Algunos productos pueden tener restricciones por contenido, cantidad, valor, peso o dimensiones.</p><WhatsAppButton /></div>
-        <div className="restriction-card"><BoxCharacter /><strong>Primero pregunta.<br />Después compra.</strong><p>No compres un artículo restringido sin consultarnos.</p></div>
+        <div className="restriction-card"><BoxCharacter /><div><strong>Primero pregunta.<br />Después compra.</strong><p>No compres un artículo restringido sin consultarnos.</p></div></div>
       </section>
 
       <section className="section faq-section" id="preguntas">
@@ -140,7 +143,7 @@ export default function Home() {
         <WhatsAppButton />
       </section>
 
-      <footer><a className="brand footer-brand" href="#inicio"><BoxCharacter small /><span><strong>PÍDELO</strong><small>DE ESPAÑA</small></span></a><p>Pídelo <b>allá.</b> Recíbelo <strong>aquí.</strong></p><span>Servicio inicial disponible en Caracas.</span></footer>
+      <footer><a className="brand footer-brand" href="#inicio"><BoxCharacter small /><span><strong>PÍDELO</strong><small>DE ESPAÑA</small></span></a><p>Pídelo <b>allá.</b> Recíbelo <strong>aquí.</strong></p><SocialIcons /><span>Servicio inicial disponible en Caracas.</span></footer>
       <button className="floating-wa" disabled aria-label="WhatsApp disponible próximamente" title="Número disponible próximamente"><span className="wa-icon" aria-hidden="true"><span>✆</span></span></button>
     </main>
   );
