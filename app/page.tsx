@@ -1,9 +1,9 @@
 const steps = [
-  { n: "01", icon: "☎", title: "Consúltanos", text: "Cuéntanos qué quieres comprar. Confirmamos que tus productos pueden enviarse." },
-  { n: "02", icon: "▣", title: "Compra en España", text: "Compra directamente en tus tiendas favoritas y utiliza nuestra dirección de recepción." },
-  { n: "03", icon: "≡", title: "Envía tus facturas", text: "Comparte las facturas y el seguimiento. Todos los artículos deben contar con factura." },
-  { n: "04", icon: "□", title: "Lo preparamos", text: "Recibimos, agrupamos y embalamos tus compras para enviarlas juntas." },
-  { n: "05", icon: "⌂", title: "Recíbelo en Caracas", text: "Coordinamos con el courier la entrega puerta a puerta en la dirección que nos indiques." },
+  { n: "01", icon: "chat", title: "Consúltanos", text: "Cuéntanos qué quieres comprar. Confirmamos que tus productos pueden enviarse." },
+  { n: "02", icon: "shop", title: "Compra en España", text: "Compra directamente en tus tiendas favoritas y utiliza nuestra dirección de recepción." },
+  { n: "03", icon: "invoice", title: "Envía tus facturas", text: "Comparte las facturas y el seguimiento. Todos los artículos deben contar con factura." },
+  { n: "04", icon: "parcel", title: "Lo preparamos", text: "Recibimos, agrupamos y embalamos tus compras para enviarlas juntas." },
+  { n: "05", icon: "home", title: "Recíbelo en Caracas", text: "Coordinamos con el courier la entrega puerta a puerta en la dirección que nos indiques." },
 ];
 
 const faqs = [
@@ -19,6 +19,8 @@ function BoxCharacter({ small = false }: { small?: boolean }) {
   return (
     <div className={`box-character ${small ? "box-small" : ""}`} aria-hidden="true">
       <span className="box-tape" />
+      <span className="box-seam" />
+      <span className="box-label">PDE</span>
       <span className="box-eye eye-left" />
       <span className="box-eye eye-right" />
       <span className="box-smile" />
@@ -29,7 +31,7 @@ function BoxCharacter({ small = false }: { small?: boolean }) {
 function WhatsAppButton({ compact = false }: { compact?: boolean }) {
   return (
     <button className={`whatsapp-button ${compact ? "compact" : ""}`} disabled title="Número disponible próximamente">
-      <span className="wa-icon" aria-hidden="true">☎</span>
+      <span className="wa-icon" aria-hidden="true"><span>✆</span></span>
       <span>{compact ? "WhatsApp" : "Empieza por WhatsApp"}</span>
       {!compact && <small>Número disponible próximamente</small>}
     </button>
@@ -44,12 +46,16 @@ export default function Home() {
           <BoxCharacter small />
           <span><strong>PÍDELO</strong><small>DE ESPAÑA</small></span>
         </a>
-        <nav aria-label="Navegación principal">
+        <nav className="desktop-nav" aria-label="Navegación principal">
           <a href="#como-funciona">Cómo funciona</a>
           <a href="#precio">Cuánto cuesta</a>
           <a href="#preguntas">Preguntas</a>
         </nav>
         <WhatsAppButton compact />
+        <details className="mobile-menu">
+          <summary aria-label="Abrir menú"><span /><span /><span /></summary>
+          <div><a href="#como-funciona">Cómo funciona</a><a href="#precio">Cuánto cuesta</a><a href="#incluye">Qué incluye</a><a href="#preguntas">Preguntas</a></div>
+        </details>
       </header>
 
       <section className="hero" id="inicio">
@@ -64,12 +70,15 @@ export default function Home() {
           <p className="consult-note">Antes de comprar, consúltanos para confirmar que tus productos pueden enviarse.</p>
         </div>
         <div className="hero-art" aria-label="Pídelo allá. Recíbelo aquí.">
-          <div className="pin pin-origin"><i /> <span>ALLÁ</span><small>España</small></div>
-          <div className="travel-line" />
-          <div className="moving-box"><span className="motion motion-one" /><span className="motion motion-two" /><BoxCharacter /></div>
-          <div className="pin pin-destination"><i /> <span>AQUÍ</span><small>Caracas</small></div>
+          <div className="location-label origin"><span>ALLÁ</span><small>Compras en España</small></div>
+          <div className="moving-box"><BoxCharacter /></div>
+          <div className="location-label destination"><span>AQUÍ</span><small>Tu puerta en Caracas</small></div>
           <div className="hero-stamp"><strong>10%</strong><span>claro y<br />transparente</span></div>
-          <p>Pídelo <b>allá.</b> Recíbelo <strong>aquí.</strong></p>
+          <div className="service-map">
+            <div><b>1</b><span><strong>Tú compras</strong><small>En las tiendas que prefieras</small></span></div>
+            <div><b>2</b><span><strong>Nosotros agrupamos</strong><small>En nuestra dirección en España</small></span></div>
+            <div><b>3</b><span><strong>Lo recibes</strong><small>Puerta a puerta en Caracas</small></span></div>
+          </div>
         </div>
       </section>
 
@@ -87,7 +96,7 @@ export default function Home() {
         </div>
         <div className="steps-grid">
           {steps.map((step) => <article className="step-card" key={step.n}>
-            <div className="step-top"><span className="step-number">{step.n}</span><span className="step-icon">{step.icon}</span></div>
+            <div className="step-top"><span className="step-number">{step.n}</span><span className={`step-icon icon-${step.icon}`} aria-hidden="true"><i /><i /><i /></span></div>
             <h3>{step.title}</h3><p>{step.text}</p>
           </article>)}
         </div>
@@ -106,7 +115,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section included-section">
+      <section className="section included-section" id="incluye">
         <div className="section-heading"><div><span className="section-kicker">Nosotros nos encargamos</span><h2>Todo listo para que llegue.</h2></div><p>Convertimos varias entregas y facturas en un único proceso ordenado.</p></div>
         <div className="included-grid">
           {["Recepción de tus compras en España", "Organización de paquetes recibidos", "Comprobación de facturas", "Consolidación de diferentes tiendas", "Preparación y embalaje", "Coordinación con el courier"].map((item, i) => <div key={item}><span>{String(i + 1).padStart(2, "0")}</span><p>{item}</p><b>✓</b></div>)}
@@ -120,11 +129,11 @@ export default function Home() {
 
       <section className="section faq-section" id="preguntas">
         <div className="section-heading"><div><span className="section-kicker">Todo claro</span><h2>Preguntas frecuentes.</h2></div><p>Lo esencial para realizar tu primer pedido con confianza.</p></div>
-        <div className="faq-list">{faqs.map(([q, a], i) => <details key={q} open={i === 0}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div>
+        <div className="faq-list">{faqs.map(([q, a]) => <details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div>
       </section>
 
       <section className="final-cta">
-        <div className="final-route"><span className="route-dot coral-dot" /><div /><BoxCharacter /><span className="route-dot mint-dot" /></div>
+        <div className="final-journey"><span><b>ALLÁ</b><small>Compras</small></span><BoxCharacter small /><span><b>AQUÍ</b><small>Tu puerta</small></span></div>
         <span className="section-kicker">Tu próximo pedido empieza aquí</span>
         <h2>¿Qué te gustaría pedir<br />de España?</h2>
         <p>Escríbenos antes de comprar. Confirmaremos si tus productos pueden enviarse y te explicaremos el proceso.</p>
@@ -132,7 +141,7 @@ export default function Home() {
       </section>
 
       <footer><a className="brand footer-brand" href="#inicio"><BoxCharacter small /><span><strong>PÍDELO</strong><small>DE ESPAÑA</small></span></a><p>Pídelo <b>allá.</b> Recíbelo <strong>aquí.</strong></p><span>Servicio inicial disponible en Caracas.</span></footer>
-      <button className="floating-wa" disabled aria-label="WhatsApp disponible próximamente" title="Número disponible próximamente">☎</button>
+      <button className="floating-wa" disabled aria-label="WhatsApp disponible próximamente" title="Número disponible próximamente"><span className="wa-icon" aria-hidden="true"><span>✆</span></span></button>
     </main>
   );
 }
