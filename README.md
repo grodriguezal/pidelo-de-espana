@@ -20,3 +20,9 @@ La aplicación estará disponible en `http://localhost:3000`.
 ```bash
 pnpm build
 ```
+
+## GitHub Pages
+
+La versión estática de validación se publica desde `index.html` en la raíz del repositorio:
+
+`https://grodriguezal.github.io/pidelo-de-espana/`
