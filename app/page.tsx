@@ -16,7 +16,7 @@ const faqs = [
 ];
 
 function BoxCharacter({ small = false }: { small?: boolean }) {
-  return <span className={`box-character box-character-image ${small ? "box-small" : ""}`} aria-hidden="true" />;
+  return <img className={`box-character box-character-image ${small ? "box-small" : ""}`} src="/box-character.png" alt="" aria-hidden="true" />;
 }
 
 function SocialIcons() {
