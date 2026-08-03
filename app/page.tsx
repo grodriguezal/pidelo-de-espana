@@ -16,20 +16,11 @@ const faqs = [
 ];
 
 function BoxCharacter({ small = false }: { small?: boolean }) {
-  return (
-    <div className={`box-character ${small ? "box-small" : ""}`} aria-hidden="true">
-      <span className="box-top" />
-      <span className="box-side" />
-      <span className="box-tape" />
-      <span className="box-eye eye-left" />
-      <span className="box-eye eye-right" />
-      <span className="box-smile" />
-    </div>
-  );
+  return <img className={`box-character ${small ? "box-small" : ""}`} src="box-character.png" alt="" aria-hidden="true" />;
 }
 
 function SocialIcons() {
-  return <div className="social-icons" aria-label="Redes sociales próximamente"><span className="social-instagram" title="Instagram próximamente" /><span className="social-facebook" title="Facebook próximamente">f</span></div>;
+  return <div className="social-icons" aria-label="Redes sociales próximamente"><span title="Instagram próximamente"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle className="social-dot" cx="17.4" cy="6.7" r="1" /></svg></span><span title="Facebook próximamente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 8H17V4.5c-.7-.1-2-.3-3.3-.3-3.2 0-5.4 2-5.4 5.6V13H5v4h3.3v7h4V17h3.3l.6-4h-3.9V10c0-1.2.4-2 2.2-2Z" /></svg></span></div>;
 }
 
 function WhatsAppButton({ compact = false }: { compact?: boolean }) {
@@ -74,14 +65,8 @@ export default function Home() {
           </div>
           <p className="consult-note">Antes de comprar, consúltanos para confirmar que tus productos pueden enviarse.</p>
         </div>
-        <div className="hero-art" aria-label="Compra en España. Recíbelo en Caracas.">
-          <div className="scroll-stage">
-            <div className="scroll-place origin"><b>ALLÁ</b><small>España</small></div>
-            <div className="delivery-box"><BoxCharacter /></div>
-            <div className="scroll-place destination"><b>AQUÍ</b><small>Caracas</small></div>
-            <p className="scroll-message"><span>Compra en España.</span><strong>Recíbelo en Caracas.</strong></p>
-          </div>
-          <span className="scroll-hint">Desliza para acompañar el pedido ↓</span>
+        <div className="hero-art" aria-label="Una cajita viajando de España a Caracas.">
+          <div className="hero-illustration"><BoxCharacter /><span className="trip-label trip-origin"><b>ALLÁ</b><small>España</small></span><span className="trip-label trip-destination"><b>AQUÍ</b><small>Caracas</small></span></div>
         </div>
       </section>
 
